@@ -136,7 +136,10 @@ function httpResponseHandler (stream, reqParams, reqData, cb, response) {
 
 		// one shot data parsing, should be much faster for smaller datasets
 		try {
-			data = JSON.parse (str.toString ('utf8'));
+			data = str.toString ('utf8');
+			if (data.length) {
+				data = JSON.parse (data);
+			}
 
 			data.transferred = symbolsTransferred;
 
